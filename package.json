@@ -1,0 +1,27 @@
+{
+  "name": "posting-node-react-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/menomanabdulla/posting-node-react-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/menomanabdulla/posting-node-react-app/issues"
+  },
+  "homepage": "https://github.com/menomanabdulla/posting-node-react-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.10",
+    "morgan": "^1.9.0"
+  }
+}
