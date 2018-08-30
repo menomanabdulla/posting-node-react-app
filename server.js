@@ -14,13 +14,12 @@ mongoose.connect('mongodb://posting-admin:postingadmin123321postingadmin@ds21159
 .then(res => console.log(`DB Connect`))
 .catch(err => console.log(err))
 
-
 //middleware
 app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-app.use('api/post', postRoute)
+app.use('/api/post', postRoute)
 
 //error handaling
 app.use((req,res,next)=>{
