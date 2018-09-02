@@ -5,7 +5,7 @@ const postSchema = new Schema({
     name:{
         type: String,
         minlength: 2,
-        maxlength: 20,
+        maxlength: 50,
         trim: true
     },
     content:{
@@ -14,8 +14,8 @@ const postSchema = new Schema({
         trim: true
     },
     like:{
-        type: Boolean,
-        likeCount: 0
+        type: Number,
+        trim: true
     },
     timestamp: {type: Date, date: Date.now}
   })
