@@ -2,7 +2,7 @@ const Post = require('../model/model')
 
 
 const allpost = ((req,res,next)=>{
-    Post.find()
+    Post.find({manager: ObjectId(req._id)})
         .then(result=>{
             if(result){
                 res.status(200).json({

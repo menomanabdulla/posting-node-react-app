@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const postRoute = require('./api/route/route')
+const userRoute = require('./api/route/userRouter')
+const commentRoute = require('./api/route/commentRouter')
 //db connection 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://posting-admin:postingadmin123321postingadmin@ds211592.mlab.com:11592/post-app',{
@@ -19,7 +21,9 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
+app.use('/api/user',userRoute)
 app.use('/api/post', postRoute)
+app.use('/api/comment',commentRoute)
 
 //error handaling
 app.use((req,res,next)=>{

@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/menomanabdulla/posting-node-react-app#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.10",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "validator": "^10.7.1"
   }
 }
