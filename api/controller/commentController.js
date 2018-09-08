@@ -1,8 +1,8 @@
-const Post = require('../model/model')
+const comment = require('../model/model')
 
 
-const allpost = ((req,res,next)=>{
-    Post.find({manager: ObjectId(req._id)})
+const Comment = ((req,res,next)=>{
+    comment.find({manager: ObjectId(req._id)})
         .then(result=>{
             if(result){
                 res.status(200).json({
@@ -21,9 +21,9 @@ const allpost = ((req,res,next)=>{
         })
 })
 
-const createPost = ((req,res,next)=>{
+const createComment = ((req,res,next)=>{
     const date = new Date().getTime()
-    const post = new Post({
+    const post = new comment({
         name: req.body.name,
         content: req.body.content,
         timestamp: date
@@ -47,28 +47,7 @@ const createPost = ((req,res,next)=>{
         })
 })
 
-const getSinglePost = ((req,res,next)=>{
-    const id = req.params.id
-    Post.findById(id)
-    .then(result=>{
-        if(result){
-            res.status(200).json({
-               result
-            })
-        }else{
-            res.status(404).json({
-                err: 'no data exist'
-            })
-        }
-    })
-    .catch(err=>{
-        res.status(500).json({
-            err: 'Error Occured'
-        })
-    })
-})
-
-const updatePost = ((req,res,next)=>{
+const updateComment = ((req,res,next)=>{
     const id = req.params.id
     Post.findByIdAndUpdate(id,{$set : req.body},{new: true})
         .then(result=>{
@@ -89,7 +68,7 @@ const updatePost = ((req,res,next)=>{
         })
 })
 
-const deletePost = ((req,res,next)=>{
+const deleteComment = ((req,res,next)=>{
     const id = req.params.id
     Post.findOneAndRemove({ _id: id })
     .then(afDeletePost=>{
@@ -106,9 +85,8 @@ const deletePost = ((req,res,next)=>{
 })
 
 module.exports = {
-    allpost,
-    createPost,
-    getSinglePost,
-    updatePost,
-    deletePost
+    Comment,
+    createComment,
+    updateComment,
+    deleteComment
 }
