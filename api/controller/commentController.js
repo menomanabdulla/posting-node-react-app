@@ -1,8 +1,8 @@
-const comment = require('../model/model')
 
+const commentModule = require('../model/commentModule')
 
-const Comment = ((req,res,next)=>{
-    comment.find({manager: ObjectId(req._id)})
+const Comments = ((req,res,next)=>{
+    commentModule.find({post: ObjectId(req._id)})
         .then(result=>{
             if(result){
                 res.status(200).json({
@@ -22,13 +22,18 @@ const Comment = ((req,res,next)=>{
 })
 
 const createComment = ((req,res,next)=>{
+    const post_id = req.params.id
+    const user_name = `${res.locals}`
     const date = new Date().getTime()
-    const post = new comment({
-        name: req.body.name,
+    //console.log(post_id)
+    //console.log(user_name)
+    const comment= new commentModule({
+        post: post_id,
         content: req.body.content,
         timestamp: date
     })
-    post.save()
+    console.log('this is commentmodule',comment)
+    comment.save()
         .then(data=>{
             if(data){
                 res.status(200).json({
@@ -42,12 +47,12 @@ const createComment = ((req,res,next)=>{
         })
         .catch(err=>{
             res.status(500).json({
-                errMsg: 'Error happend'
+                err: 'Error happend'
             })
         })
 })
 
-const updateComment = ((req,res,next)=>{
+/*const updateComment = ((req,res,next)=>{
     const id = req.params.id
     Post.findByIdAndUpdate(id,{$set : req.body},{new: true})
         .then(result=>{
@@ -66,11 +71,11 @@ const updateComment = ((req,res,next)=>{
                 err: 'Error Occured'
             })
         })
-})
+})*/
 
-const deleteComment = ((req,res,next)=>{
+/*const deleteComment = ((req,res,next)=>{
     const id = req.params.id
-    Post.findOneAndRemove({ _id: id })
+    commentModule.findOneAndRemove({ _id: id })
     .then(afDeletePost=>{
         console.log(afDeletePost)
         res.json({
@@ -82,11 +87,9 @@ const deleteComment = ((req,res,next)=>{
             msg: 'There is no post for drope'
         })
     })
-})
+})*/
 
 module.exports = {
-    Comment,
-    createComment,
-    updateComment,
-    deleteComment
+    Comments,
+    createComment
 }
